@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nageswara Rao Innamuri | Salesforce Developer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0070c9;
+      --primary-glow: #4ea1f7;
+      --bg: #181c24;
+      --text: #f4f6f8;
+      --card: #23272f;
+      --shadow: 0 4px 24px rgba(0,0,0,0.18);
+      --timeline: #4ea1f7;
+      --accent: #00e1ff;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .bg-animated {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 60% 20%, #0070c955 0%, transparent 70%),
+                  radial-gradient(ellipse at 20% 80%, #00e1ff33 0%, transparent 70%);
+      animation: bgmove 12s linear infinite alternate;
+    }
+    @keyframes bgmove {
+      0% { background-position: 60% 20%, 20% 80%; }
+      100% { background-position: 70% 30%, 10% 90%; }
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      text-align: center;
+      padding-top: 48px;
+      padding-bottom: 24px;
+      position: relative;
+    }
+    .avatar {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary);
+      margin-bottom: 18px;
+      box-shadow: 0 4px 32px var(--primary-glow);
+      animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.92);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .hero h1 {
+      font-size: 2.7em;
+      margin: 0;
+      letter-spacing: 1px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.25em;
+      margin: 12px 0 24px 0;
+      color: #b6e0ff;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .links {
+      margin: 18px 0 10px 0;
+    }
+    .links a {
+      margin: 0 10px;
+      color: var(--primary-glow);
+      font-size: 1.5em;
+      transition: color 0.2s, transform 0.2s;
+      text-shadow: 0 2px 8px #0070c955;
+    }
+    .links a:hover {
+      color: var(--accent);
+      transform: scale(1.18) translateY(-2px);
+    }
+    .hero-btns {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+    .cta-btn, .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-size: 1.15em;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 2px 16px #0070c933;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+    }
+    .cta-btn:hover, .resume-btn:hover {
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 24px #00e1ff33;
+    }
+    .cta-btn:active, .resume-btn:active {
+      transform: scale(0.98);
+    }
+    .section {
+      margin: 36px 0 0 0;
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      color: var(--primary-glow);
+      margin-bottom: 18px;
+      font-size: 2em;
+      letter-spacing: 0.5px;
+    }
+    .about {
+      max-width: 700px;
+      margin: 0 auto 32px auto;
+      text-align: center;
+      background: rgba(36, 54, 80, 0.7);
+      border-radius: 18px;
+      padding: 32px 18px 18px 18px;
+      box-shadow: 0 2px 16px #0070c922;
+      animation: fadeIn 1.2s 0.2s backwards;
+    }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+    }
+    .skill {
+      background: #23272f;
+      color: var(--primary-glow);
+      padding: 12px 20px;
+      border-radius: 22px;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 1px 8px #0070c922;
+      transition: transform 0.2s, background 0.2s;
+      font-weight: 600;
+    }
+    .skill:hover {
+      transform: scale(1.08) rotate(-2deg);
+      background: #1a2333;
+      color: var(--accent);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 18px;
+    }
+    .project-card {
+      position: relative;
+      background: rgba(36,54,80,0.55);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      padding: 0;
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.22s cubic-bezier(.4,0,.2,1), box-shadow 0.22s;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.03) rotate(-1deg);
+      box-shadow: 0 12px 40px #00e1ff33;
+      border-color: var(--accent);
+    }
+    .project-card-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      filter: brightness(0.55) blur(0.5px);
+      transition: filter 0.3s;
+    }
+    .project-card:hover .project-card-bg {
+      filter: brightness(0.7) blur(0px);
+    }
+    .project-card-content {
+      position: relative;
+      z-index: 2;
+      padding: 28px 22px 22px 22px;
+      background: linear-gradient(0deg, rgba(24,28,36,0.92) 70%, rgba(24,28,36,0.2) 100%);
+      border-radius: 0 0 18px 18px;
+    }
+    .project-title {
+      font-weight: bold;
+      font-size: 1.18em;
+      color: var(--primary-glow);
+      margin-bottom: 6px;
+      letter-spacing: 0.2px;
+    }
+    .project-period {
+      color: #b6e0ff;
+      font-size: 0.98em;
+      font-weight: 500;
+      margin-left: 6px;
+    }
+    .project-desc {
+      color: var(--text);
+      font-size: 1.05em;
+      margin-bottom: 12px;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .project-tag {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      font-size: 0.92em;
+      font-weight: 600;
+      border-radius: 16px;
+      padding: 4px 14px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 1px 6px #0070c922;
+      transition: background 0.2s;
+      border: none;
+    }
+    .timeline {
+      position: relative;
+      margin: 40px 0 0 0;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--timeline);
+      border-radius: 2px;
+      opacity: 0.5;
+    }
+    .exp {
+      position: relative;
+      margin-bottom: 36px;
+      animation: fadeIn 1.2s 0.2s backwards;
+    }
+    .exp:last-child { margin-bottom: 0;}
+    .exp-dot {
+      position: absolute;
+      left: -2px; top: 6px;
+      width: 16px; height: 16px;
+      background: var(--timeline);
+      border-radius: 50%;
+      border: 3px solid var(--card);
+      box-shadow: 0 2px 8px #00e1ff33;
+    }
+    .exp-content { margin-left: 30px;}
+    .exp-title { font-weight: bold; color: var(--primary-glow);}
+    .exp-role { font-size: 1.05em; color: var(--text);}
+    .exp-date { color: #b6e0ff; font-size: 0.95em; margin-bottom: 4px;}
+    .contact-form {
+      background: var(--card);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px #0070c922;
+      max-width: 400px;
+      margin: 32px auto 0;
+      animation: fadeIn 1.2s 0.2s backwards;
+    }
+    .contact-form label { display: block; margin-bottom: 6px; color: var(--primary-glow);}
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: 8px; margin-bottom: 14px;
+      border: 1px solid #2a3a4d; border-radius: 6px; font-size: 1em;
+      background: #181c24; color: var(--text);
+    }
+    .contact-form button {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff; border: none; padding: 10px 20px;
+      border-radius: 20px; font-weight: 700; cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .contact-form button:hover { background: linear-gradient(90deg, var(--accent), var(--primary)); transform: scale(1.04);}
+    .dark-toggle {
+      position: fixed; top: 24px; right: 24px;
+      background: var(--card); border: none; border-radius: 50%;
+      width: 44px; height: 44px; box-shadow: var(--shadow);
+      cursor: pointer; font-size: 1.3em; color: var(--primary-glow);
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .dark-toggle:hover { background: #1a2333;}
+    @media (max-width: 800px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 5px; }
+      .skills-grid { flex-direction: column; align-items: center; }
+      .dark-toggle { top: 12px; right: 12px;}
+      .hero-btns { flex-direction: column; gap: 12px; }
+      .about { padding: 18px 6px 12px 6px;}
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animated"></div>
+  <button class="dark-toggle" title="Toggle dark mode" onclick="toggleDarkMode()">
+    <i class="fa-solid fa-moon"></i>
+  </button>
+  <div class="container">
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+      <img src="profile.jpg" alt="Nageswara Rao Innamuri" class="avatar">
+      <h1>Nageswara Rao Innamuri</h1>
+      <p>Salesforce Developer | Admin | CRM Analytics | Data Integrator</p>
+      <div class="links">
+        <a href="mailto:nageswarao1830@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/innamuri-nageswara-rao" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://bold.pro/my/nageswararao-innamuri" target="_blank" title="Portfolio"><i class="fa-solid fa-briefcase"></i></a>
+        <a href="https://github.com/Nageswarao106" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.salesforce.com/trailblazer/nageswararao106" target="_blank" title="Trailblazer"><i class="fa-brands fa-salesforce"></i></a>
+      </div>
+      <div class="hero-btns">
+        <a class="cta-btn" href="#projects" id="view-work-btn"><i class="fa-solid fa-eye"></i> View My Work</a>
+        <a class="resume-btn" href="Nageswararao_Salesforce_Developer_Resume_Tailored.docx" download id="resume-btn"><i class="fa-solid fa-download"></i> Download Resume</a>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about" id="about">
+      <h2>About Me</h2>
+      <p>
+        Passionate Salesforce Developer and Administrator with 7+ years of experience delivering scalable, end-to-end solutions across Sales, Service, Experience, Health, Financial Services, Public Sector, and Marketing Clouds. <br>
+        <br>
+        <b>Education:</b> Master's in Business Analytics, Trine University, USA<br>
+        <b>Certifications:</b> Salesforce Certified Administrator, Salesforce Certified Platform Developer I
+      </p>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="section" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <span class="skill"><i class="fa-brands fa-salesforce"></i> Salesforce</span>
+        <span class="skill"><i class="fa-solid fa-code"></i> Apex</span>
+        <span class="skill"><i class="fa-solid fa-bolt"></i> LWC</span>
+        <span class="skill"><i class="fa-solid fa-layer-group"></i> Visualforce</span>
+        <span class="skill"><i class="fa-solid fa-cloud"></i> Sales Cloud</span>
+        <span class="skill"><i class="fa-solid fa-headset"></i> Service Cloud</span>
+        <span class="skill"><i class="fa-solid fa-users"></i> Experience Cloud</span>
+        <span class="skill"><i class="fa-solid fa-chart-line"></i> CRM Analytics</span>
+        <span class="skill"><i class="fa-solid fa-link"></i> MuleSoft</span>
+        <span class="skill"><i class="fa-solid fa-robot"></i> Copado</span>
+        <span class="skill"><i class="fa-brands fa-aws"></i> AWS</span>
+        <span class="skill"><i class="fa-solid fa-database"></i> Data Loader</span>
+        <span class="skill"><i class="fa-brands fa-jira"></i> Jira</span>
+        <span class="skill"><i class="fa-solid fa-sitemap"></i> Agile/Scrum</span>
+        <span class="skill"><i class="fa-brands fa-git-alt"></i> Git</span>
+        <span class="skill"><i class="fa-brands fa-html5"></i> HTML/CSS/JS</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid" id="projects-list"></div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section class="section" id="experience">
+      <h2>Work Experience</h2>
+      <div class="timeline">
+        <div class="exp">
+          <div class="exp-dot"></div>
+          <div class="exp-content">
+            <div class="exp-title">Canadian Pacific Kansas City (CPKC), Kansas City, USA</div>
+            <div class="exp-role">Salesforce Developer/Admin</div>
+            <div class="exp-date">Mar 2023 – Present</div>
+            <ul>
+              <li>Developed and maintained Apex classes, triggers, batch, and queueable jobs to automate business processes and support scalable solutions.</li>
+              <li>Built Lightning Web Components (LWC), Aura Components, and Visualforce pages for responsive, modular UIs across Salesforce1 and desktop.</li>
+              <li>Designed and implemented declarative automation using Flow Builder, Process Builder, Workflow Rules, Approval Processes, and Dynamic Forms.</li>
+              <li>Integrated Salesforce with SAP and internal/external platforms using REST/SOAP APIs, MuleSoft, Platform Events, and AWS (S3, Lambda).</li>
+              <li>Utilized Copado and Copado Robotics Testing for CI/CD automation, version control, and automated deployment/testing.</li>
+              <li>Configured and customized Salesforce objects, fields, page layouts, validation rules, and metadata to meet evolving business requirements.</li>
+              <li>Managed user access, security, SSO, MFA, OWD, Profiles, Permission Sets, and Shield Encryption, ensuring compliance with security policies.</li>
+              <li>Executed data migrations and ETL using Data Loader, Import Wizard, Apex scripts, and Workbench, maintaining high data integrity.</li>
+              <li>Built reports, dashboards, joined reports, and SOQL queries for analytics and operational insights, including Einstein Analytics solutions.</li>
+              <li>Tracked and managed development activities using Jira Scrum and Kanban boards, collaborating with cross-functional teams in Agile/Scrum environments.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp">
+          <div class="exp-dot"></div>
+          <div class="exp-content">
+            <div class="exp-title">Alliance One Industries India Pvt. Ltd, India</div>
+            <div class="exp-role">Salesforce Admin/Developer</div>
+            <div class="exp-date">Feb 2021 – Dec 2022</div>
+            <ul>
+              <li>Developed and maintained Apex code, Visualforce pages, and Lightning components for supply chain and marketing solutions.</li>
+              <li>Customized Salesforce objects, fields, workflows, and platform features to meet business needs and support process automation.</li>
+              <li>Integrated Salesforce with SAP and ERP systems via MuleSoft, Apex callouts, and external APIs, ensuring data integrity and process efficiency.</li>
+              <li>Managed user access, authentication, SSO, Profiles, Permission Sets, and security health checks.</li>
+              <li>Executed high-volume data migrations from legacy systems using Data Loader, Import Wizard, and Apex scripts.</li>
+              <li>Built reports, dashboards, and complex SOQL queries to support operational and leadership KPIs.</li>
+              <li>Authored technical documentation, process flow diagrams, user guides, and knowledge articles for development and configuration activities.</li>
+              <li>Tracked and managed development activities in Jira, collaborating with cross-functional teams in Agile delivery cycles.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp">
+          <div class="exp-dot"></div>
+          <div class="exp-content">
+            <div class="exp-title">Microspark Solution, Hyderabad, India</div>
+            <div class="exp-role">Salesforce Administrator/Developer</div>
+            <div class="exp-date">Nov 2017 – Jan 2021</div>
+            <ul>
+              <li>Customized Salesforce CRM for healthcare workflows across Leads, Cases, Opportunities, Appointments, and standard objects (Accounts, Contacts).</li>
+              <li>Designed and implemented Custom Objects, Validation Rules, Page Layouts, and Record Types tailored to healthcare operations.</li>
+              <li>Developed Apex Classes, Triggers, and email alert logic to automate processes such as lead assignment and case escalation.</li>
+              <li>Built Lightning Web Components (LWC) and Visualforce pages with Apex controllers for dynamic dashboards and user-specific interactions.</li>
+              <li>Implemented Salesforce1 features and mobile cards to support clinicians and field agents with on-the-go CRM access.</li>
+              <li>Configured robust security models using Roles, Profiles, Sharing Rules, Queues, Public Groups, and Single Sign-On (SSO).</li>
+              <li>Ensured HIPAA and GDPR compliance through field-level security, audit trails, and secure sharing configurations.</li>
+              <li>Migrated and transformed legacy system data using Apex, Data Loader, and Import Wizard while preserving relational integrity.</li>
+              <li>Built Summary, Matrix, and Tabular Reports with interactive Dashboards to monitor KPIs, SLA metrics, and user engagement.</li>
+              <li>Delivered multiple release cycles via sandbox refreshes, Change Sets, and metadata deployments.</li>
+              <li>Collaborated with offshore/onshore teams to resolve incidents, apply bug fixes, and document known issues.</li>
+              <li>Authored Trailhead guides and internal enablement materials to support L1/L2 teams and continuous learning.</li>
+              <li>Participated actively in Agile ceremonies, including daily standups, retrospectives, and business analysis sessions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="4" required></textarea>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    // Projects data
+    const projects = [
+      {
+        title: "Einstein Analytics for Executive Dashboards",
+        period: "July 2023 - Present",
+        description: "Developed executive dashboards using Einstein Analytics, combining data from Sales, Service, and Marketing Clouds. Enabled real-time KPI tracking and data-driven decision-making for senior leadership.",
+        products: "CRM Analytics, Sales Cloud, Service Cloud, Einstein, Marketing Cloud",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce Grant Management Automation",
+        period: "March 2023 - Present",
+        description: "Designed and implemented a Salesforce-based grant management system to automate research proposal submissions, multi-stage reviews, and grant tracking. Integrated with external ARI systems for seamless data flow and provided real-time analytics dashboards for leadership, improving transparency and efficiency.",
+        products: "Sales Cloud, Service Cloud, Experience Cloud, CRM Analytics, Salesforce Platform",
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce Data Cloud (CDP) for Unified Customer 360",
+        period: "July 2024 - December 2024",
+        description: "Led the implementation of Salesforce Data Cloud (Customer Data Platform) to unify customer data from multiple sources, including Sales, Service, and Marketing Clouds. Built a single, real-time Customer 360 profile to enable personalized engagement, targeted marketing, and predictive analytics. Enhanced data governance and compliance, and empowered business teams with actionable insights for cross-channel campaigns.",
+        products: "Customer Data Cloud, Sales Cloud, Salesforce Platform, Service Cloud, Marketing Cloud",
+        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "AI-Powered Case Classification and Routing with Einstein GPT",
+        period: "January 2024 - June 2024",
+        description: "Implemented an AI-driven case classification and routing solution using Salesforce Einstein GPT. Leveraged natural language processing to automatically analyze and categorize incoming support cases, then routed them to the appropriate teams based on urgency and topic. Integrated CRM Analytics dashboards to monitor case trends and agent performance, resulting in a 35% reduction in average case resolution time and improved customer satisfaction.",
+        products: "Service Cloud, Einstein, CRM Analytics, Salesforce Platform",
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce-AWS Document Management Integration",
+        period: "June 2023 - December 2023",
+        description: "Built a secure integration between Salesforce and AWS S3, enabling automated document storage and retrieval for customer records. Leveraged Apex callouts and AWS SDK, ensuring compliance with data security standards and improving document management efficiency.",
+        products: "Sales Cloud, Service Cloud, Salesforce Platform, Other",
+        image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Experience Cloud Partner Portal",
+        period: "May 2023 - September 2023",
+        description: "Built a branded Experience Cloud portal for partners, featuring role-based access, self-service case management, and real-time reporting. Increased partner engagement and reduced support escalations by 25%.",
+        products: "Sales Cloud, Service Cloud, Experience Cloud",
+        image: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce DevOps & CI/CD Pipeline Implementation",
+        period: "March 2023 - September 2023",
+        description: "Led the rollout of a CI/CD pipeline using Salesforce DX, Azure DevOps, and GitHub. Automated deployments, version control, and scratch org management, resulting in a 40% increase in deployment efficiency and reduced release errors.",
+        products: "Salesforce Platform, Other",
+        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Mobile-First Salesforce1 Customization for Field Agents",
+        period: "March 2023 - August 2023",
+        description: "Customized Salesforce1 mobile app for field agents, including mobile cards, quick actions, and offline data access. Enhanced productivity and data capture for remote teams.",
+        products: "Salesforce Mobile App, Sales Cloud, Service Cloud",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Omni-Channel Case Routing and Entitlement Automation",
+        period: "May 2022 - December 2022",
+        description: "Implemented Salesforce Service Cloud Omni-Channel routing and automated entitlement processes for a global support team. Reduced case resolution time by 30% and improved SLA compliance through Flow and Apex automation.",
+        products: "Service Cloud, Salesforce Platform",
+        image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce Integration with MuleSoft for Real-Time Order Processing",
+        period: "June 2021 - December 2022",
+        description: "Integrated Salesforce with ERP systems using MuleSoft, enabling real-time order processing and status updates. Improved order accuracy and reduced manual intervention for the operations team.",
+        products: "MuleSoft, Sales Cloud, Salesforce Platform, Service Cloud",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce Center of Excellence (CoE) Enablement Program",
+        period: "April 2021 - December 2022",
+        description: "Contributed to the Salesforce CoE by creating 100+ Knowledge Articles, leading peer training sessions, and developing reusable solution templates. Accelerated onboarding and reduced L2 escalations by 30%.",
+        products: "Salesforce Platform, Sales Cloud, Service Cloud, Experience Cloud",
+        image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Lightning Web Components (LWC) Component Library",
+        period: "February 2022 - September 2022",
+        description: "Developed a reusable LWC component library for internal teams, including dynamic data tables, modals, and custom input forms. Utilized Salesforce Lightning Design System (SLDS) and Lightning events for consistent UI/UX across multiple orgs, accelerating development and standardization.",
+        products: "Salesforce Platform, Experience Cloud, Sales Cloud, Service Cloud",
+        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce Data Migration for M&A Integration",
+        period: "February 2021 - August 2021",
+        description: "Managed the migration of over 1 million records during a company merger, using Apex scripts, Data Loader, and ETL tools. Achieved 99.8% data accuracy and maintained referential integrity across multiple Salesforce orgs.",
+        products: "Sales Cloud, Service Cloud, Salesforce Platform",
+        image: "https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Salesforce Compliance Automation (GDPR, HIPAA, SOX)",
+        period: "March 2020 - December 2020",
+        description: "Automated compliance processes in Salesforce, including field-level security, audit trails, and consent management. Ensured ongoing adherence to GDPR, HIPAA, and SOX requirements across all business units.",
+        products: "Salesforce Platform, Financial Services Cloud, Service Cloud, Health Cloud",
+        image: "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Automated UAT and Release Management",
+        period: "July 2019 - December 2019",
+        description: "Developed automated UAT scripts and release management processes using Salesforce Sandboxes, Change Sets, and Azure DevOps. Reduced release cycle time and improved deployment quality.",
+        products: "Salesforce Platform, Other",
+        image: "https://images.unsplash.com/photo-1468779060412-202c7ab43b50?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    // Render projects as animated cards with background images
+    const projectsDiv = document.getElementById('projects-list');
+    projects.forEach((proj) => {
+      const tags = proj.products.split(',').map(tag => tag.trim());
+      const tagHTML = tags.map(tag =>
+        `<span class="project-tag">${tag}</span>`
+      ).join(' ');
+
+      const projectDiv = document.createElement('div');
+      projectDiv.className = 'project-card';
+      projectDiv.innerHTML = `
+        <div class="project-card-bg" style="background-image:url('${proj.image}');"></div>
+        <div class="project-card-content">
+          <div class="project-title">${proj.title}
+            <span class="project-period">(${proj.period})</span>
+          </div>
+          <div class="project-tags">${tagHTML}</div>
+          <div class="project-desc">${proj.description}</div>
+        </div>
+      `;
+      projectsDiv.appendChild(projectDiv);
+    });
+
+    // Dark mode toggle
+    function toggleDarkMode() {
+      const theme = document.body.getAttribute('data-theme');
+      if (theme === 'dark') {
+        document.body.removeAttribute('data-theme');
+        document.querySelector('.dark-toggle i').classList.replace('fa-sun', 'fa-moon');
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        document.querySelector('.dark-toggle i').classList.replace('fa-moon', 'fa-sun');
+      }
+    }
+
+    // Smooth scroll for "View My Work"
+    document.getElementById('view-work-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Resume download animation
+    document.getElementById('resume-btn').addEventListener('click', function() {
+      this.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+      setTimeout(() => {
+        this.innerHTML = '<i class="fa-solid fa-download"></i> Download Resume';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
